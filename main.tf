@@ -1,14 +1,3 @@
-
-terraform {
-  cloud {
-    organization = "lstedmanfalls"
-
-    workspaces {
-      name = "terraform-aws-gametime-takehome-parent-respository"
-    }
-  }
-}
-
 module "ec2-instance" {
   source                 = "terraform-aws-modules/ec2-instance/aws"
   version                = "5.6.0"

@@ -6,6 +6,7 @@ module "ec2-instance" {
   monitoring             = var.ec2_monitoring
   vpc_security_group_ids = var.ec2_sg_ids
   subnet_id              = var.ec2_subnet_id
+  availability_zone      = var.az
 
   tags = {
     Terraform   = "true"

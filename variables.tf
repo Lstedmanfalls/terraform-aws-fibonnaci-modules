@@ -3,6 +3,10 @@ variable "region" {
   type        = string
 }
 
+variable "az" {
+  description = "The regoin's availability zone to deploy these resources into"
+}
+
 variable "project_name" {
   description = "Application, service, etc. that will use these resources"
   type        = string

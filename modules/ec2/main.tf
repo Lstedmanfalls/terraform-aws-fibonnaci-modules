@@ -16,7 +16,7 @@ module "ec2-instance" {
   count                  = var.num_instances
   monitoring             = var.monitoring
   vpc_security_group_ids = var.vpc_sg_ids
-  subnet_id              = data.aws_subnet.subnet_id[0]
+  subnet_id              = data.aws_subnet.subnet_id.id
 
   tags = {
     Terraform   = "true"

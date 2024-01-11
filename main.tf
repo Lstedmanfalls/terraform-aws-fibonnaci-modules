@@ -8,7 +8,7 @@ module "network" {
   environment  = var.environment
 }
 
-data "aws_subnet" "public" {
+data "network" "public" {
   for_each   = toset(module.network.public_subnets)
   id         = each.key
   depends_on = [module.network]

@@ -9,7 +9,7 @@ module "network" {
 }
 
 data "aws_subnets" "public" {
-  for_each = toset(data.aws_subnets.public.ids)
+  for_each = toset(module.network.public_subnets)
   id       = each.key
 }
 module "ec2" {

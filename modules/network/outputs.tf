@@ -1,11 +1,11 @@
 output "vpc_id" {
-  value = aws_vpc.this[0].id
+  value = module.vpc.default_vpc_id
 }
 
 output "aws_availability_zones" {
-  value = data.aws_availability_zones.all.names
+  value = module.vpc.azs.all
 }
 
 output "sg_id" {
-  value = aws_vpc.this[0].default_security_group_id
+  value = module.vpc.default_security_group_id
 }

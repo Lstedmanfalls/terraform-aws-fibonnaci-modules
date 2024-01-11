@@ -9,8 +9,3 @@ variable "environment" {
   type        = string
   nullable    = false
 }
-
-variable "az" {
-  description = "The region's availability zone to deploy these resources into"
-  nullable    = false
-}

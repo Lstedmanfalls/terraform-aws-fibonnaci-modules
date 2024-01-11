@@ -2,20 +2,15 @@ module "network" {
   source       = "./modules/network"
   project_name = var.project_name
   environment  = var.environment
-  az           = var.az
 }
 
-data "aws_subnet" "new_subnet" {
+data "aws_subnet" "new_subnet_id" {
   availability_zone = var.az
 
   filter {
     name   = "vpc_id"
     values = [module.network.vpc_id]
   }
-}
-
-output "new_subnet_in_az" {
-  value = data.aws_subnet.new_subnet.id
 }
 
 module "ec2" {
@@ -28,7 +23,7 @@ module "ec2" {
   num_instances = var.num_instances
   monitoring    = var.monitoring
   vpc_sg_ids    = [module.network.sg_id]
-  subnet_id     = data.aws_subnet.new_subnet.id
+  subnet_id     = data.aws_subnet.new_subnet_id[0]
   depends_on    = [module.network]
 }
 

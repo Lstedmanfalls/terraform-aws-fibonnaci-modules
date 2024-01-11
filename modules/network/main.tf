@@ -6,12 +6,3 @@ module "vpc" {
 }
 
 data "aws_availability_zones" "all" {}
-
-data "aws_subnet" "new_subnet" {
-  availability_zone = var.az
-
-  filter {
-    name   = "vpc_id"
-    values = [module.network.vpc_id]
-  }
-}

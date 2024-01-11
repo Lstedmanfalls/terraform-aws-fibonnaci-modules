@@ -5,6 +5,19 @@ module "network" {
   az           = var.az
 }
 
+data "aws_subnet" "new_subnet" {
+  availability_zone = var.az
+
+  filter {
+    name   = "vpc_id"
+    values = [module.network.vpc_id]
+  }
+}
+
+output "new_subnet_in_az" {
+  value = data.aws_subnet.new_subnet.id
+}
+
 module "ec2" {
   source        = "./modules/ec2"
   project_name  = var.project_name

@@ -8,10 +8,9 @@ module "network" {
   environment  = var.environment
 }
 
-data "network" "public" {
-  for_each   = toset(module.network.public_subnets)
-  id         = each.key
-  depends_on = [module.network]
+data "aws_subnets" "public" {
+  for_each = toset(data.aws_subnets.public.ids)
+  id       = each.key
 }
 module "ec2" {
   source        = "./modules/ec2"

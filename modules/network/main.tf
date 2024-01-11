@@ -1,3 +1,5 @@
+data "aws_availability_zones" "all" {}
+
 module "vpc" {
   source         = "terraform-aws-modules/vpc/aws"
   name           = "${var.project_name}-${var.environment}"

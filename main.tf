@@ -13,7 +13,7 @@ data "aws_subnet" "new_subnet" {
 
   filter {
     name   = "vpc_id"
-    values = [module.network.vpc_id]
+    values = [module.network.vpc.vpc_id]
   }
 }
 
@@ -26,7 +26,7 @@ module "ec2" {
   instance_type = var.instance_type
   num_instances = var.num_instances
   monitoring    = var.monitoring
-  vpc_sg_ids    = [module.network.default_security_group_id]
+  vpc_sg_ids    = [module.network.vpc.default_security_group_id]
   subnet_id     = data.aws_subnet.new_subnet.id
   depends_on    = [module.network]
 }

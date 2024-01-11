@@ -18,8 +18,6 @@ module "ec2" {
   num_instances = var.num_instances
   monitoring    = var.monitoring
   vpc_sg_ids    = [module.network.sg_id]
-  vpc_id        = module.network.vpc_id
-  depends_on    = [module.network]
 }
 
 # module "iam" {

@@ -45,9 +45,3 @@ variable "vpc_sg_ids" {
   nullable    = false
   sensitive   = true
 }
-
-variable "vpc_id" {
-  description = "The vpc to deploy this ec2 instance into"
-  type        = string
-  nullable    = false
-}

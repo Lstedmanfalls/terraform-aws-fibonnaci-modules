@@ -1,9 +1,7 @@
-data "aws_subnet" "subnet_id" {
-  availability_zone = var.az
-
+data "aws_subnet" "az_subnet" {
   filter {
-    name   = "vpc-id"
-    values = [var.vpc_id]
+    name   = "availability_zone"
+    values = [var.az]
   }
 }
 
@@ -16,7 +14,7 @@ module "ec2-instance" {
   count                  = var.num_instances
   monitoring             = var.monitoring
   vpc_security_group_ids = var.vpc_sg_ids
-  subnet_id              = data.aws_subnet.subnet_id.id
+  subnet_id              = data.aws_subnet.az_subnet.id
 
   tags = {
     Terraform   = "true"

@@ -5,4 +5,6 @@ module "vpc" {
   public_subnets = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 8, k + 4)]
 }
 
-data "aws_availability_zones" "all" {}
+data "aws_availability_zones" "available" {
+  state = "available"
+}

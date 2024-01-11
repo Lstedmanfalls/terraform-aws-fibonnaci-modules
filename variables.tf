@@ -44,17 +44,3 @@ variable "monitoring" {
   type        = bool
   default     = false
 }
-
-variable "sg_ids" {
-  description = "List of vpc security group ids to associate with this ec2 instance"
-  type        = list(string)
-  nullable    = false
-  sensitive   = true
-}
-
-variable "subnet_id" {
-  description = "Subnet to deploy this ec2 instance into"
-  type        = string
-  nullable    = false
-  sensitive   = true
-}

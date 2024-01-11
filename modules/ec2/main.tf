@@ -1,7 +1,7 @@
 data "aws_subnet" "az_subnet" {
   filter {
     name   = "availability_zone"
-    values = [var.az]
+    values = ["${var.az}"]
   }
 }
 

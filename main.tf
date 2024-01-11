@@ -9,7 +9,7 @@ data "aws_subnet" "new_subnet" {
 
   filter {
     name   = "vpc_id"
-    values = [module.network.vpc.vpc_id]
+    values = [module.network.vpc_id]
   }
 }
 output "new_subnet_in_az" {

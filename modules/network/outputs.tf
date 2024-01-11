@@ -3,7 +3,7 @@ output "vpc_id" {
 }
 
 output "aws_availability_zones" {
-  value = module.vpc.azs.all
+  value = module.vpc.azs
 }
 
 output "sg_id" {

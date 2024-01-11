@@ -1,7 +1,3 @@
-provider "aws" {
-  region = var.region
-}
-
 module "network" {
   source       = "./modules/network"
   project_name = var.project_name
@@ -15,6 +11,9 @@ data "aws_subnet" "new_subnet" {
     name   = "vpc_id"
     values = [module.network.vpc.vpc_id]
   }
+}
+output "new_subnet_in_az" {
+  value = data.aws_subnet.new_subnet.id
 }
 
 module "ec2" {

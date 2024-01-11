@@ -45,3 +45,10 @@ variable "vpc_sg_ids" {
   nullable    = false
   sensitive   = true
 }
+
+variable "subnet_id" {
+  description = "List of the subnet id to deploy this ec2 instance into"
+  type        = string
+  nullable    = false
+  sensitive   = true
+}

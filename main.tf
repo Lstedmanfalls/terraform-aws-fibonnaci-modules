@@ -8,10 +8,15 @@ module "network" {
   environment  = var.environment
 }
 
-data "aws_subnets" "public" {
-  for_each = toset(module.network.public_subnets)
-  id       = each.key
+data "aws_subnet" "new_subnet" {
+  availability_zone = var.az
+
+  filter {
+    name   = "vpc_id"
+    values = [module.network.vpc_id]
+  }
 }
+
 module "ec2" {
   source        = "./modules/ec2"
   project_name  = var.project_name
@@ -22,7 +27,7 @@ module "ec2" {
   num_instances = var.num_instances
   monitoring    = var.monitoring
   vpc_sg_ids    = [module.network.default_security_group_id]
-  subnet_id     = local.subnet_id
+  subnet_id     = data.aws_subnet.new_subnet.id
   depends_on    = [module.network]
 }
 

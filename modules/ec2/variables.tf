@@ -1,14 +1,3 @@
-variable "region" {
-  description = "The region to deploy the resources into"
-  type        = string
-  nullable    = false
-}
-
-variable "az" {
-  description = "The region's availability zone to deploy these resources into"
-  nullable    = false
-}
-
 variable "project_name" {
   description = "Application, service, etc. that will use these resources"
   type        = string
@@ -18,6 +7,11 @@ variable "project_name" {
 variable "environment" {
   description = "Environment to deploy these resources into (development, staging, or production)"
   type        = string
+  nullable    = false
+}
+
+variable "az" {
+  description = "The region's availability zone to deploy these resources into"
   nullable    = false
 }
 
@@ -45,7 +39,7 @@ variable "monitoring" {
   default     = false
 }
 
-variable "sg_ids" {
+variable "vpc_sg_ids" {
   description = "List of vpc security group ids to associate with this ec2 instance"
   type        = list(string)
   nullable    = false

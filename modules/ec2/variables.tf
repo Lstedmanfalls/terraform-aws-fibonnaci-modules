@@ -46,9 +46,8 @@ variable "vpc_sg_ids" {
   sensitive   = true
 }
 
-variable "subnet_id" {
-  description = "Subnet to deploy this ec2 instance into"
+variable "vpc_id" {
+  description = "The vpc to deploy this ec2 instance into"
   type        = string
   nullable    = false
-  sensitive   = true
 }

@@ -6,7 +6,7 @@ resource "aws_launch_configuration" "ecs_launch_config" {
   name            = "ecs-launch-config"
   image_id        = "ami-05803413c51f242b7"
   instance_type   = var.instance_type
-  security_groups = [vpc_sg_ids]
+  security_groups = var.vpc_sg_ids
 
   lifecycle {
     create_before_destroy = true

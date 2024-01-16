@@ -1,8 +1,24 @@
-resource "aws_ecr_repository" "ecr_repo" {
-  name                 = "${var.project_name}-${var.environment}"
-  image_tag_mutability = "IMMUTABLE"
+module "public_ecr" {
+  source = "terraform-aws-modules/ecr/aws"
 
-  image_scanning_configuration {
-    scan_on_push = true
-  }
+  repository_name = "${var.project_name}-${var.environment}"
+  repository_type = "private"
+
+  repository_lifecycle_policy = jsonencode({
+    rules = [
+      {
+        rulePriority = 1,
+        description  = "Keep last 30 images",
+        selection = {
+          tagStatus     = "tagged",
+          tagPrefixList = ["v"],
+          countType     = "imageCountMoreThan",
+          countNumber   = 30
+        },
+        action = {
+          type = "expire"
+        }
+      }
+    ]
+  })
 }

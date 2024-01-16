@@ -47,10 +47,3 @@ variable "subnet_id" {
   nullable    = false
   sensitive   = true
 }
-
-variable "vpc_id" {
-  description = "The vpc to deploy the resouces into"
-  type        = string
-  nullable    = false
-  sensitive   = true
-}

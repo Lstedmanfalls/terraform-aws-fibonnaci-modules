@@ -19,7 +19,6 @@ module "ecs" {
   num_instances = var.num_instances
   min_instances = var.min_instances
   max_instances = var.max_instances
-  vpc_id        = module.network.vpc_id
   depends_on    = [module.network]
 }
 

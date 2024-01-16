@@ -1,3 +1,3 @@
 # ECR Module
-- Creates an aws docker container registry
+- Creates a private aws docker container repository
 - See the registry / main.tf for the required inputs

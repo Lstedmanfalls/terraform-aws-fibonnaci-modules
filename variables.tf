@@ -21,16 +21,10 @@ variable "environment" {
   nullable    = false
 }
 
-variable "instance_name" {
-  description = "Unique name for this ec2 instance. Environment and project_name will be prefixed automatically to the name"
-  type        = string
-  nullable    = false
-}
-
 variable "instance_type" {
   description = "Type and size of ec2 instance to create"
   type        = string
-  default     = "t3.micro"
+  default     = "t2.micro"
 }
 
 variable "num_instances" {
@@ -39,8 +33,14 @@ variable "num_instances" {
   default     = 1
 }
 
-variable "monitoring" {
-  description = "Whether to enable ec2 detailed monitoring"
-  type        = bool
-  default     = false
+variable "max_instances" {
+  description = "The max number of ec2 instances to scale"
+  type        = number
+  default     = 3
+}
+
+variable "min_instances" {
+  description = "The min number of ec2 instances to scale"
+  type        = number
+  default     = 1
 }

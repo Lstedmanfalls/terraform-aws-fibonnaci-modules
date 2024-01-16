@@ -9,17 +9,17 @@ module "network" {
   az           = var.az
 }
 
-module "ec2" {
-  source        = "./modules/ec2"
-  project_name  = var.project_name
+module "ecs" {
+  source        = "./modules/ecs"
   environment   = var.environment
-  az            = var.az
-  instance_name = var.instance_name
+  project_name  = var.project_name
+  vpc_sg_ids    = [module.network.sg_id]
+  subnet_id     = module.network.subnet_id
   instance_type = var.instance_type
   num_instances = var.num_instances
-  monitoring    = var.monitoring
-  subnet_id     = module.network.subnet_id
-  vpc_sg_ids    = [module.network.sg_id]
+  min_instances = var.min_instances
+  max_instances = var.max_instances
+  vpc_id        = module.network.vpc_id
   depends_on    = [module.network]
 }
 

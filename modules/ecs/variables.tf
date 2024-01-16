@@ -10,17 +10,6 @@ variable "environment" {
   nullable    = false
 }
 
-variable "az" {
-  description = "The region's availability zone to deploy these resources into"
-  nullable    = false
-}
-
-variable "instance_name" {
-  description = "Unique name for this ec2 instance. Environment and project_name will be prefixed automatically to the name"
-  type        = string
-  nullable    = false
-}
-
 variable "instance_type" {
   description = "Type and size of ec2 instance to create"
   type        = string
@@ -33,10 +22,16 @@ variable "num_instances" {
   default     = 1
 }
 
-variable "monitoring" {
-  description = "Whether to enable ec2 detailed monitoring"
-  type        = bool
-  default     = false
+variable "max_instances" {
+  description = "The max number of ec2 instances to scale"
+  type        = number
+  default     = 3
+}
+
+variable "min_instances" {
+  description = "The min number of ec2 instances to scale"
+  type        = number
+  default     = 1
 }
 
 variable "vpc_sg_ids" {
@@ -48,6 +43,13 @@ variable "vpc_sg_ids" {
 
 variable "subnet_id" {
   description = "List of the subnet id to deploy this ec2 instance into"
+  type        = string
+  nullable    = false
+  sensitive   = true
+}
+
+variable "vpc_id" {
+  description = "The vpc to deploy the resouces into"
   type        = string
   nullable    = false
   sensitive   = true

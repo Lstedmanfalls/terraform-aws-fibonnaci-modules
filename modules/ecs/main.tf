@@ -3,7 +3,7 @@ resource "aws_ecs_cluster" "ecs_cluster" {
 }
 
 resource "aws_launch_configuration" "ecs_launch_config" {
-  name            = "ecs-launch-config"
+  name            = "${var.project_name}-${var.environment}-launch-config"
   image_id        = "ami-05803413c51f242b7"
   instance_type   = var.instance_type
   security_groups = var.vpc_sg_ids

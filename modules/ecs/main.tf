@@ -22,3 +22,14 @@ resource "aws_autoscaling_group" "ecs_autoscaling_group" {
   health_check_type         = "EC2"
   health_check_grace_period = 300
 }
+
+resource "aws_ecs_service" "app" {
+  name       = "${var.project_name}-${var.environment}"
+  cluster    = aws_ecs_cluster.ecs_cluster.id
+  depends_on = [aws_ecs_cluster.ecs_cluster]
+
+  placement_constraints {
+    type       = "memberOf"
+    expression = "attribute:ecs.availability-zone in [${var.az}]"
+  }
+}

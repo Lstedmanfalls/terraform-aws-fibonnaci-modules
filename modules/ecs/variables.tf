@@ -47,3 +47,8 @@ variable "subnet_id" {
   nullable    = false
   sensitive   = true
 }
+
+variable "az" {
+  description = "The region's availability zone to deploy these resources into"
+  nullable    = false
+}

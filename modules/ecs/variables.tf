@@ -13,7 +13,7 @@ variable "environment" {
 variable "instance_type" {
   description = "Type and size of ec2 instance to create"
   type        = string
-  default     = "t3.micro"
+  default     = "t2.micro"
 }
 
 variable "num_instances" {
